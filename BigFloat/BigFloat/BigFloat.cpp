@@ -58,7 +58,6 @@ int BigFloat::CompareNum(const BigFloat& left, const BigFloat& right)
 	}
 };
 
-//Operations without sign and decimals, utilized by Operations
 BigFloat BigFloat::Sum(const BigFloat& left, const BigFloat& right)
 {
 	BigFloat tmp;
@@ -586,7 +585,6 @@ BigFloat BigFloat::operator/(const BigFloat& other) const
 	N.LeadTrim();
 	D.LeadTrim();
 
-	//Increase Precision to highest decimal quote
 	int div_precision = (this->m_decimals > other.m_decimals) ? (this->m_decimals) : (other.m_decimals);
 	for (int i = 0; i < div_precision; i++)
 		N.m_number.push_front('0');
@@ -855,7 +853,6 @@ bool BigFloat::operator<= (const BigFloat& right) const
 	return !(*this > right);
 };
 
-//Stream Operators
 std::ostream& operator<<(std::ostream& out, const BigFloat& right)
 {
 	if(right.m_sign == -1)
@@ -924,7 +921,6 @@ void BigFloat::SetPrecision(int prec)
 	}
 };
 
-//Remove leading zeros of numbers, utilized by Operations without sign
 void BigFloat::LeadTrim()
 {
 	for (int i = m_number.size() - 1; i > m_decimals; --i)
@@ -936,7 +932,6 @@ void BigFloat::LeadTrim()
 	}
 };
 
-//Remove non significant trailing zeros
 void BigFloat::TrailTrim()
 {
 	while ((m_number[0] == '0') && (m_decimals > 0))
@@ -946,7 +941,6 @@ void BigFloat::TrailTrim()
 	}
 };
 
-//Miscellaneous Methods
 std::string BigFloat::Exp() const
 {
 	std::stringstream out;
